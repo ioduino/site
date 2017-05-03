@@ -20,11 +20,13 @@ class NetworkService{
       { route: '/client/network/devices', callback: this.deviceReceived, parent: this },
       { route: '/client/network/register', callback: this.registerReceived, parent: this },
       { route: '/client/network/list', callback: this.listReceived, parent: this },
-      { route: '/client/valve/update', callback: this.valveUpdate, parent: this },
       { route: '/client/valve/action', callback: this.valveAction, parent: this }
     ]);
     this.account.eventRegister("login_pass", (data)=>{
       self.stompClient.send("/server/network/list",{session: data.sessionKey});
+      self.stompClient.registerAfter([
+        { route: '/client/valve/update/'+data.sessionKey, callback: self.valveUpdate, parent: self } // use sessionkey to get valve updates
+      ]);
     })-1;
 
   }

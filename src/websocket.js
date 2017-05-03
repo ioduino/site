@@ -49,6 +49,14 @@ class StompClient{
   uregister(event, id){
     // do later
   }
+  registerAfter(regs){
+    regs.forEach((registration) => {
+      self.client.subscribe(registration.route, (m) => {
+        var data = JSON.parse(m.body);
+        registration.callback(data, registration.parent);
+      });
+    });
+  }
   register(registrations) {
     this.registrations.push(registrations);
     console.log(this.registrations);
