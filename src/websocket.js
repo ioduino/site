@@ -50,6 +50,7 @@ class StompClient{
     // do later
   }
   registerAfter(regs){
+    var self = this;
     regs.forEach((registration) => {
       self.client.subscribe(registration.route, (m) => {
         var data = JSON.parse(m.body);
