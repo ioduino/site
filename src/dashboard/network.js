@@ -74,7 +74,7 @@ class Network extends Component{
     };
     return (
       <div>
-      <Route path="/dashboard/network/add" render={() => (
+      <Route path="/dashboard/network/add" exact render={() => (
         <Box col={12} p={2}>
           <Paper style={style.paper} zDepth={1}>
             <Flex col={12} wrap>
@@ -111,7 +111,7 @@ class Network extends Component{
           </Paper>
         </Box>
       )}/>
-        <Route path="/dashboard" render={()=>(
+        <Route path="/dashboard" exact render={()=>(
           <Flex wrap lg={12}>
             {this.props.network.devicesArray.map((device)=>this.valve(this.props.network.devicesObjs[device], device))}
           </Flex>

@@ -61,9 +61,6 @@ class Dashboard extends Component {
             </Box>
           </Box>
           <Box lg={10} col={12} my={2} wrap>
-            <Route path="/dashboard/network" render={() => (
-              <Network account={this.props.account} network={this.props.network}/>
-            )}/>
             <Route path="/dashboard" render={() => (
               <Network account={this.props.account} network={this.props.network}/>
             )}/>
