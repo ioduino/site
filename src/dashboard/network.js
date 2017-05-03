@@ -74,7 +74,6 @@ class Network extends Component{
     };
     return (
       <div>
-        {(this.props.network.selected!="null") && (
         <Route path="/dashboard/network/add" exact render={() => (
           <Box col={12} p={2}>
             <Paper style={style.paper} zDepth={1}>
@@ -111,12 +110,14 @@ class Network extends Component{
               </Flex>
             </Paper>
           </Box>
-        )}/>)}
-        <Route path="/dashboard" exact render={()=>(
-          <Flex wrap lg={12}>
-            {this.props.network.devicesArray.map((device)=>this.valve(this.props.network.devicesObjs[device], device))}
-          </Flex>
         )}/>
+        {(this.props.network.selected!="null") && (
+          <Route path="/dashboard" exact render={()=>(
+            <Flex wrap lg={12}>
+              {this.props.network.devicesArray.map((device)=>this.valve(this.props.network.devicesObjs[device], device))}
+            </Flex>
+          )}/>
+        )}
       </div>
     );
   }
