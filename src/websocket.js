@@ -25,6 +25,15 @@ class StompClient{
         x(frame);
       });
     }
+    this.client.onDisconnected = ()=>{
+      console.log("what?");
+      if(this.events.onDisconnected==null){
+        return;
+      }
+      self.events.onDisconnected.forEach((x)=>{
+        x();
+      });
+    }
     self.client.connect();
     self.stompConnected((frame)=> {
       self.registrations.forEach((group)=>{
@@ -44,6 +53,12 @@ class StompClient{
       this.events.stompConnected = new Array();
     }
     return this.events.stompConnected.push(callback);
+  }
+  disconnected(callback){
+    if(this.events.onDisconnected==null) {
+      this.events.onDisconnected = new Array();
+    }
+    return this.events.onDisconnected.push(callback);
   }
 
   uregister(event, id){

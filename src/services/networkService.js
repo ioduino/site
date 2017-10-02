@@ -10,6 +10,7 @@ class NetworkService{
   devicesObjs = {};
   devicesArray = [];
   e = {};
+  updateId=0;
   constructor(e, stompClient, account){
     this.session = localStorage.getItem("session");
     this.e = e;
@@ -24,11 +25,14 @@ class NetworkService{
     ]);
     this.account.eventRegister("login_pass", (data)=>{
       self.stompClient.send("/server/network/list",{session: data.sessionKey});
-      self.stompClient.registerAfter([
+      self.updateId = self.stompClient.registerAfter([
         { route: '/client/valve/update/'+data.sessionKey, callback: self.valveUpdate, parent: self } // use sessionkey to get valve updates
       ]);
     })-1;
-
+    self.stompClient.diconnected(()=>{
+      // handle disconnect
+      // self.updateId
+    });
   }
   selectNetwork(n){
     this.selected = n;
