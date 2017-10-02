@@ -24,7 +24,7 @@ import './App.css';
 
 
 class App extends Component {
-  client = new StompClient("https://api.ioduino.net/socket");
+  client = new StompClient("http://api.ioduino.net/socket");
 
   account = new Account(this, this.client);
   network = new NetworkService(this, this.client, this.account);
