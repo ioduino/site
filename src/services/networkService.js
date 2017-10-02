@@ -29,10 +29,10 @@ class NetworkService{
         { route: '/client/valve/update/'+data.sessionKey, callback: self.valveUpdate, parent: self } // use sessionkey to get valve updates
       ]);
     })-1;
-    self.stompClient.diconnected(()=>{
+    /*self.stompClient.diconnected(()=>{
       // handle disconnect
       // self.updateId
-    });
+    });*/
   }
   selectNetwork(n){
     this.selected = n;
