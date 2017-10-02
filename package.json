@@ -18,7 +18,7 @@
     "redux-thunk": "^2.2.0",
     "reflexbox": "^2.2.3",
     "sockjs-client": "^1.1.2",
-    "stompjs": "https://github.com/firestar/stomp-websocket.git",
+    "estompjs": "https://github.com/firestar/stomp-websocket.git",
     "uuid": "^3.0.1"
   },
   "devDependencies": {

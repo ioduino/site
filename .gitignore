@@ -1,10 +1,6 @@
 
 # dependencies
-!node_modules
-node_modules/*
-!node_modules/estompjs/
-
-
+node_modules/
 
 # testing
 /coverage
