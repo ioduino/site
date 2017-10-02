@@ -38,7 +38,7 @@ docker build -t firestarthehack/ioduino-frontend:latest ./'''
     }
     stage('Deploy') {
       steps {
-        rancher(environmentId: '1a5', confirm: true, image: 'firestarthehack/ioduino-frontend:latest', service: 'IODuino/frontend', endpoint: 'http://34.215.0.188:8080/v2-beta', credentialId: 'rancher-server')
+        rancher(environmentId: '1a5', ports:'', environments:'', confirm: true, image: 'firestarthehack/ioduino-frontend:latest', service: 'IODuino/frontend', endpoint: 'http://34.215.0.188:8080/v2-beta', credentialId: 'rancher-server')
       }
     }
   }
