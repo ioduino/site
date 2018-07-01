@@ -27,10 +27,6 @@ pipeline {
             sh "cp Dockerfile dockerbuild/Dockerfile"
             sh "cp nginx.vh.default.conf dockerbuild/nginx.vh.default.conf"
             sh "docker build -t firestarthehack/ioduino-frontend:${BUILD_NUMBER} ./dockerbuild"
-          },
-          "Save Artifact": {
-            sh 'zip -r static.zip dockerbuild/static/'
-            archiveArtifacts(artifacts: 'static.zip', onlyIfSuccessful: true)
           }
         )
       }
