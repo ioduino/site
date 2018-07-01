@@ -25,7 +25,7 @@ pipeline {
           sh "cp -r build/* dockerbuild/static/"
           sh "cp Dockerfile dockerbuild/Dockerfile"
           sh "cp nginx.vh.default.conf dockerbuild/nginx.vh.default.conf"
-          sh "docker build -t firestarthehack/ioduino-frontend:${BUILD_NUMBER} ./dockerbuild"
+          sh "cd dockerbuild;docker build -t firestarthehack/ioduino-frontend:${BUILD_NUMBER} ./"
         }
       }
     }
