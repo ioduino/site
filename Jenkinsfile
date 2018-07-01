@@ -7,6 +7,11 @@ pipeline {
       }
     }
     stage('Build') {
+      agent {
+        docker {
+            image 'node:7.4'
+        }
+      }
       steps {
         sh 'npm install'
         sh 'npm run build'
