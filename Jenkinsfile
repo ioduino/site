@@ -19,16 +19,14 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        parallel(
-          "Build Docker Image": {
-            sh "mkdir dockerbuild/"
-            sh "mkdir dockerbuild/static/"
-            sh "cp -r build/* dockerbuild/static/"
-            sh "cp Dockerfile dockerbuild/Dockerfile"
-            sh "cp nginx.vh.default.conf dockerbuild/nginx.vh.default.conf"
-            sh "docker build -t firestarthehack/ioduino-frontend:${BUILD_NUMBER} ./dockerbuild"
-          }
-        )
+        "Build Docker Image": {
+          sh "mkdir dockerbuild/"
+          sh "mkdir dockerbuild/static/"
+          sh "cp -r build/* dockerbuild/static/"
+          sh "cp Dockerfile dockerbuild/Dockerfile"
+          sh "cp nginx.vh.default.conf dockerbuild/nginx.vh.default.conf"
+          sh "docker build -t firestarthehack/ioduino-frontend:${BUILD_NUMBER} ./dockerbuild"
+        }
       }
     }
     stage('Publish Latest Image') {
