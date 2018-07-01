@@ -26,7 +26,7 @@ pipeline {
             sh "cp -r build/* dockerbuild/static/"
             sh "cp Dockerfile dockerbuild/Dockerfile"
             sh "cp nginx.vh.default.conf dockerbuild/nginx.vh.default.conf"
-            sh "docker build -t firestarthehack/ioduino-frontend:latest ./dockerbuild"
+            sh "docker build -t firestarthehack/ioduino-frontend:${BUILD_NUMBER} ./dockerbuild"
           },
           "Save Artifact": {
             sh 'zip -r static.zip dockerbuild/static/'
@@ -38,7 +38,7 @@ pipeline {
     stage('Publish Latest Image') {
       steps {
         sh "docker login -u ${DOCKER_PRIVATE_USR} -p ${DOCKER_PRIVATE_PSW} ${PRIVATE_REGISTRY}"
-        sh 'docker push firestarthehack/ioduino-frontend:latest'
+        sh "docker push firestarthehack/ioduino-frontend:${BUILD_NUMBER}"
       }
     }
   }
