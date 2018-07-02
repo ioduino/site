@@ -1,7 +1,7 @@
 node {
     checkout scm
 	stage('Build') {
-		docker.build('node:9').inside{
+		docker.image('node:9').inside{
 			sh 'npm install'
 			sh 'npm run build'
 		}
