@@ -9,7 +9,7 @@ pipeline {
     stage('Build') {
       agent {
         docker {
-            image 'node:slim'
+            image 'node:9'
         }
       }
       steps {
