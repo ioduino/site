@@ -10,17 +10,19 @@ pipeline {
       steps {
         sh 'npm install'
         sh 'npm run build'
-        sh "mkdir dockerbuild/"
+		sh 'zip -r static.zip dockerbuild/static/'
+        archiveArtifacts(artifacts: 'static.zip', onlyIfSuccessful: true)
+      }
+    }
+    stage('Docker Build') {
+      steps {
+	    sh "mkdir dockerbuild/"
         sh "mkdir dockerbuild/static/"
         sh "cd build/;ls"
         sh "cd build/static/;ls"
         sh "cp -r build/* dockerbuild/static/"
         sh "cp Dockerfile dockerbuild/Dockerfile"
         sh "cp nginx.vh.default.conf dockerbuild/nginx.vh.default.conf"
-      }
-    }
-    stage('Docker Build') {
-      steps {
         sh "cd dockerbuild;docker build -t firestarthehack/ioduino-frontend:${BUILD_NUMBER} ./"
       }
     }
