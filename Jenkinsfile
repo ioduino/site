@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        "Build Docker Image": {
+        "Build Docker Image" {
           sh "mkdir dockerbuild/"
           sh "mkdir dockerbuild/static/"
           sh "cp -r build/* dockerbuild/static/"
