@@ -21,5 +21,4 @@ node {
 		builtImage.push()
 		builtImage.push('latest')
 	}
-  }
 }
