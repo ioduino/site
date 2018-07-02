@@ -15,10 +15,6 @@ pipeline {
       steps {
         sh 'npm install'
         sh 'npm run build'
-      }
-    }
-    stage('Docker Build') {
-      steps {
         sh "mkdir dockerbuild/"
         sh "mkdir dockerbuild/static/"
         sh "cd build/;ls"
@@ -26,6 +22,10 @@ pipeline {
         sh "cp -r build/* dockerbuild/static/"
         sh "cp Dockerfile dockerbuild/Dockerfile"
         sh "cp nginx.vh.default.conf dockerbuild/nginx.vh.default.conf"
+      }
+    }
+    stage('Docker Build') {
+      steps {
         sh "cd dockerbuild;docker build -t firestarthehack/ioduino-frontend:${BUILD_NUMBER} ./"
       }
     }
