@@ -21,6 +21,7 @@ pipeline {
       steps {
         sh "mkdir dockerbuild/"
         sh "mkdir dockerbuild/static/"
+        sh "cd build/;ls"
         sh "cp -r build/* dockerbuild/static/"
         sh "cp Dockerfile dockerbuild/Dockerfile"
         sh "cp nginx.vh.default.conf dockerbuild/nginx.vh.default.conf"
